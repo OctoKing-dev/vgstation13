@@ -113,6 +113,7 @@ var/savefile/Banlist
 		var/thisinfo = temp ? "will be removed in [minutes] minutes" : "is a permanent ban"
 		ban_unban_log_save("[bannedby] has [temp ? "perma" : ""]banned [ckey]. - Reason: [reason] - This [thisinfo].")
 		log_admin("[bannedby] has banned [ckey].\nReason: [reason]\nThis [thisinfo].")
+		notes_add(ckey, "[temp ? "Banned" : "Permabanned"] by [bannedby][sticky ? " (Sticky)" : ""] - [reason]")
 		message_admins("<span class='warning'>[bannedby] has banned [ckey].\nReason: [reason]\nThis [thisinfo].</span>")
 		usr.client.holder.DB_ban_record(temp ? BANTYPE_TEMP : BANTYPE_PERMA, src, temp ? minutes : -1, reason)
 
